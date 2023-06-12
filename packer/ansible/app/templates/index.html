@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Welcome to FlaskBlog {% endblock %}</h1>
+    <p>Host: <span id="hostname"></span></p>
+    {% for post in posts %}
+        <a href="{{ url_for('post', post_id=post['id']) }}">
+            <h2>{{ post['title'] }}</h2>
+        </a>
+        <span class="badge badge-primary">{{ post['created'] }}</span>
+        <a href="{{ url_for('edit', id=post['id']) }}">
+            <span class="badge badge-warning">Edit</span>
+        </a>
+        <hr>
+    {% endfor %}
+    <script>
+        // JavaScript code to fetch and display the hostname
+        document.addEventListener('DOMContentLoaded', function() {
+            var hostnameElement = document.getElementById('hostname');
+            var hostname = window.location.hostname;
+            hostnameElement.textContent = hostname;
+        });
+    </script>
+{% endblock %}

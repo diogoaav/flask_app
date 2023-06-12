@@ -1,0 +1,5 @@
+---
+
+#MySQL Settings
+mysql_password: "YOUR-DB-PASSWORD"
+mysql_host: "YOUR-DB-PRIVATE-HOST"
