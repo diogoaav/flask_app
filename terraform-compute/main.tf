@@ -17,14 +17,6 @@ resource "digitalocean_droplet" "flask" {
     private_key = file("~/.ssh/id_rsa")  # Path to your private SSH key
     host        = self.ipv4_address
   }
-
-#  provisioner "remote-exec" {
-#    inline = [
-#      "cd /root/app",
-#      "chmod +x create_flask_service.sh",
-#      "./create_flask_service.sh"
-#    ]
-#  }  
 }
 
 resource "digitalocean_loadbalancer" "public" {
@@ -42,5 +34,5 @@ resource "digitalocean_loadbalancer" "public" {
     protocol = "tcp"
   }
 
-  droplet_tag = "flask_apps"
+  droplet_ids = digitalocean_droplet.flask.*.id
 }
